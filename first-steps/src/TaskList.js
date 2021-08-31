@@ -10,7 +10,7 @@ export default class TaskList extends Component {
     }
     return (
       <div>
-        {Task('teste')}
+        {tasksList.map((task) => Task(task) )}
       </div>
     )
   }
