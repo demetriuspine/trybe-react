@@ -1,0 +1,10 @@
+.App {
+  padding-top: 4.5rem;
+  min-height: 100vh;
+}
+
+.header {
+  justify-content: center;
+  color: whitesmoke;
+  background-color: rgb(204, 15, 15);
+}
