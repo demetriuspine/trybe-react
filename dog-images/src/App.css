@@ -1,0 +1,12 @@
+.dog-img {
+  width: 400px;
+}
+
+.card {
+  width: 20rem;
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+}

@@ -6,6 +6,7 @@ export default class DogImage extends Component {
     this.state = {
       loading: true,
       dogObj: undefined,
+      breed: undefined,
     }
   }
 
@@ -18,6 +19,7 @@ export default class DogImage extends Component {
         this.setState({
           loading: false,
           dogObj: jsonParsing,
+          breed: jsonParsing.message.split('/')[4],
         })
       }
     )
@@ -28,10 +30,15 @@ export default class DogImage extends Component {
   }
 
   renderDogImage = () => {
+    const {breed ,dogObj: {message}} = this.state;
+    const formattedBreed = breed.toLowerCase()
+    .split('-').map((letter) => letter.charAt(0).toUpperCase() + letter
+    .substring(1)).join(' ');
     return(
-      <section>
-        <img src={ this.state.dogObj.message } alt='dog'/>
-        <button type="button" onClick= { this.fetchDog } >Carregar outro cachorro</button>
+      <section className="card">
+        <img className="card-img-top" src={ message } alt='dog'/>
+        <p>Raça: { formattedBreed }</p>
+        <button className="btn btn-success" type="button" onClick= { this.fetchDog } >Carregar outro cachorro</button>
       </section>
     )    
   }
@@ -41,7 +48,7 @@ export default class DogImage extends Component {
     const loadingElement = <span>Loading...</span>;
 
     return (
-      <main>
+      <main className="main-container">
         {loading ? loadingElement : this.renderDogImage()}
       </main>
     )
