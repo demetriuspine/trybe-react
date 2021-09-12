@@ -4,15 +4,46 @@ export default class DogImage extends Component {
   constructor() {
     super();
     this.state = {
-      dogObj: 'https://images.dog.ceo/breeds/retriever-golden/n02099601_9518.jpg',
+      loading: true,
+      dogObj: undefined,
     }
   }
-  render() {
-    const { dogObj } = this.state;
-    return (
+
+  fetchDog = async () => {
+    this.setState(
+      { loading: true },
+      async () => {
+        const apiRequest = await fetch('https://dog.ceo/api/breeds/image/random');
+        const jsonParsing = await apiRequest.json();
+        this.setState({
+          loading: false,
+          dogObj: jsonParsing,
+        })
+      }
+    )
+  }
+
+  componentDidMount() {
+    this.fetchDog();
+  }
+
+  renderDogImage = () => {
+    return(
       <section>
-        <img src={ dogObj } alt='dog'/>
+        <img src={ this.state.dogObj.message } alt='dog'/>
+        <button type="button" onClick= { this.fetchDog } >Carregar outro cachorro</button>
       </section>
+    )    
+  }
+
+  render() {
+    const { loading } = this.state;
+    const loadingElement = <span>Loading...</span>;
+
+    return (
+      <main>
+        {loading ? loadingElement : this.renderDogImage()}
+      </main>
     )
   }
 }
