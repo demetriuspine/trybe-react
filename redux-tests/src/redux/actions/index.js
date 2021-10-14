@@ -1,3 +1,5 @@
-export const addClick = () => ({
+const addClick = () => ({
   type: 'ADD_CLICK',
 })
+
+export default addClick
