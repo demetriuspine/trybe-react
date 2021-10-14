@@ -12,9 +12,9 @@ const renderWithRedux = (
 ) => {
   return {
     ...render(
-      <Provider store={ store } >
-        { component }
-      </Provider>
+        <Provider store={ store } >
+          { component }
+        </Provider>
     ),
     store,
   }
