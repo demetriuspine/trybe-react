@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import addClick from '../redux/actions';
 
-export class ButtonClicks extends Component {
+class ButtonClicks extends Component {
   render() {
     const { add } = this.props
     return (
